@@ -945,9 +945,10 @@ public class AutoLeyLineOutcropTask : ISoloTask
             _logger.LogDebug("识别到溢口提示，尝试交互");
             Simulation.SendInput.SimulateAction(GIActions.PickUpOrInteract);
             await Delay(300, _ct);
-            keyDown("s");
-			await sleep(300);
-			keyUp("s");
+            Simulation.SendInput.SimulateAction(GIActions.MoveBackward, KeyType.KeyDown);
+            await Delay(1000, _ct);
+            Simulation.SendInput.SimulateAction(GIActions.MoveBackward, KeyType.KeyUp);
+            await Delay(500, _ct);
             Simulation.SendInput.SimulateAction(GIActions.PickUpOrInteract);
             await Delay(300, _ct);
         }
